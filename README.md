@@ -25,6 +25,20 @@ The following scripts are available:
 - [ ] Find datasets with ugly slugs
 - [ ] Find datasets with very similar slugs
 
+The scripts are meant to be used on the command line using the help of pipes.
+E.g. the script `name_to_id.py` takes a list of slugs from stdin and produces a list of correspondings IDs on stdout.
+The IDs can then be used by other scripts, e.g. `purge_datasets.py`, which excepts a list of CKAN dataset IDs on stdin.
+
+Errors are printed to stderr.
+
+### Convert name to IDs
 ```bash
-cat ckan_datasets_to_delete.txt | python purge_dataset.py
+cat ckan_dataset_names.txt | python name_to_id.py > ckan_dataset_ids.txt # Linux/Unix
+type ckan_dataset_names.txt | python name_to_id.py > ckan_dataset_ids.txt # Windows
+```
+
+### Purge
+```bash
+cat ckan_dataset_ids.txt | python purge_dataset.py # Linux/Unix
+type ckan_dataset_ids.txt | python purge_dataset.py # Windows
 ```
