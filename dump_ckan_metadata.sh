@@ -1,0 +1,1 @@
+ckanapi dump datasets --all -O datasets.jsonl.gz -z -p 4 -r https://data.stadt-zuerich.ch
