@@ -39,6 +39,7 @@ type ckan_dataset_names.txt | python name_to_id.py > ckan_dataset_ids.txt # Wind
 
 ### Purge
 ```bash
+ckanapi action package_search q=tags:delete-me rows=500 -r https://data.stadt-zuerich.ch | jq -r ".results|.[]|.name" > ckan_dataset_ids.txt
 cat ckan_dataset_ids.txt | python purge_dataset.py # Linux/Unix
 type ckan_dataset_ids.txt | python purge_dataset.py # Windows
 ```
