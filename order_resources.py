@@ -6,7 +6,7 @@ from ckanapi import RemoteCKAN, NotFound
 
 # load env
 from dotenv import load_dotenv
-load_dotenv(verbose=True, dotenv_path='.env')
+load_dotenv(verbose=True)
 
 BASE_URL = os.getenv('CKAN_BASE_URL')
 API_KEY = os.getenv('CKAN_API_KEY')
