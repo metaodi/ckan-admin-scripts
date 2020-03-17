@@ -21,6 +21,7 @@ for dataset in sys.stdin:
     data = {
         "id": dataset.strip()
     }
+    print('Reordering %s...' % data['id'], file=sys.stderr)
     try:
         ckan_dataset = site.call_action('package_show', data, requests_kwargs={'verify': False})
 
