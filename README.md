@@ -24,6 +24,9 @@ The following scripts are available:
 - [x] Purge datasets -> `purge_datasets.py`
 - [ ] Find datasets with ugly slugs
 - [ ] Find datasets with very similar slugs
+- [x] Upload resources to CKAN -> `upload_resource_to_ckan.py`
+- [x] Change sort-order of resources -> `order_resources.py`
+
 
 The scripts are meant to be used on the command line using the help of pipes.
 E.g. the script `name_to_id.py` takes a list of slugs from stdin and produces a list of correspondings IDs on stdout.
