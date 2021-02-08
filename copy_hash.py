@@ -37,7 +37,7 @@ for dataset in sys.stdin:
         ckan_dataset = site.call_action('package_show', data, requests_kwargs={'verify': False})
         
         for resource in ckan_dataset['resources']:
-            data = {'id': resource['id'], 'hash': resource.get('zh_hash', resource.get('hash', ''))
+            data = {'id': resource['id'], 'hash': resource.get('zh_hash', resource.get('hash', ''))}
             site.call_action('resource_patch', data, requests_kwargs={'verify': False})
     except NotFound:
         log.error('%s not found!' % data['id'])
