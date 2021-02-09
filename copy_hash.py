@@ -37,7 +37,14 @@ for dataset in sys.stdin:
         ckan_dataset = site.call_action('package_show', data, requests_kwargs={'verify': False})
         
         for resource in ckan_dataset['resources']:
-            data = {'id': resource['id'], 'hash': resource.get('zh_hash', resource.get('hash', ''))}
-            site.call_action('resource_patch', data, requests_kwargs={'verify': False})
+            if resource['hash']:
+                log.info("Resource %s has already a hash: %s" % (resource['id'], resource['hash']))
+            try:
+                data = {'id': resource['id'], 'hash': resource.get('zh_hash', resource.get('hash', ''))}
+                site.call_action('resource_patch', data, requests_kwargs={'verify': False})
+                log.info("Set hash %s on resource %s" % (data['hash'], data['id']))
+            except Exception:
+                log.exception("Error occured for dataset %s, resource %s" % (data['id'], resource['id']))
+                continue
     except NotFound:
         log.error('%s not found!' % data['id'])
