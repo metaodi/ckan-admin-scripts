@@ -44,7 +44,7 @@ urllib3.disable_warnings()
 
 site = RemoteCKAN(BASE_URL, apikey=API_KEY)
 
-showcases = site.call_action('ckanext_showcase_list', requests_kwargs={'verify': verify})
+showcases = site.call_action('ckanext_showcase_list', {}, requests_kwargs={'verify': verify})
 
 
 for showcase in showcases:
