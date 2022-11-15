@@ -46,13 +46,15 @@ site = RemoteCKAN(BASE_URL, apikey=API_KEY)
 verify = not arguments['--no-verify']
 
 showcases = site.call_action('ckanext_showcase_list', {}, requests_kwargs={'verify': verify})
+log.info(f"Showcases without datasets:")
 for showcase in showcases:
     data = {
         "showcase_id": showcase['name']
     }
-    log.info(f"Checking showcase {showcase['name']}...")
+
     try:
         datasets = site.call_action('ckanext_showcase_package_list', data, requests_kwargs={'verify': verify})
-        print(f"Number of datasets: {datasets}")
+        if len(datasets) == 0:
+            print(f"{showcase['name']}")
     except NotFound:
         log.error("{data['showcase_id']} not found!")
